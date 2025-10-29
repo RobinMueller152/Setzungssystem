@@ -47,6 +47,9 @@ def validate_data(input_name: str) -> pd.DataFrame:
     if list(df.columns) != expected_cols:
         print("Spaltennamen passen nicht, werden überschrieben:")
         print("Gefunden:", list(df.columns))
+        if 'Zeitstempel' in list(df.columns):
+            print("Ein Google Sheet scheint die Eingabe gewesen zu sein, lösche die Spalte Zeitstempel!")
+            del df['Zeitstempel']
         df.columns = expected_cols
     else:
         print("Spalten korrekt.")
@@ -268,14 +271,14 @@ def print_rooms(Rooms):
     for room in Rooms:
         col_entries = []
         col_entries.append("Team 1")
-        col_entries += [f"{m["Name"]} ({m["Redepräferenz"]}, {m["Erfahrung"]})" for m in room.Team1]
+        col_entries += [f"{m['Name']} ({m['Redepräferenz']}, {m['Erfahrung']})" for m in room.Team1]
         col_entries.append("")  # Leerzeile
         col_entries.append("Team 2")
-        col_entries += [f"{m["Name"]} ({m["Redepräferenz"]}, {m["Erfahrung"]})" for m in room.Team2]
+        col_entries += [f"{m['Name']} ({m['Redepräferenz']}, {m['Erfahrung']})" for m in room.Team2]
         col_entries.append("")  # Leerzeile
         col_entries.append("Frei")
         if hasattr(room, "Frei"):
-            col_entries += [f"{m["Name"]} ({m["Redepräferenz"]}, {m["Erfahrung"]})" for m in room.Frei]
+            col_entries += [f"{m['Name']} ({m['Redepräferenz']}, {m['Erfahrung']})" for m in room.Frei]
         room_columns[f"Raum {room.ID}"] = col_entries
 
     # Nicht zugeordnete Teilnehmer
