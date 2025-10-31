@@ -14,6 +14,13 @@ min_rooms = 2
 max_rooms = 10
 ironman_threshold = 15 #WIP: Minimum an kumulativer Erfahrung, um dritten Teamplatz frei zu erlauben
 
+"""
+
+    class Room:
+
+Definiert jeden Raum als eigene Klasse mit zwei Teams und einem freien Rednerteam sowie einer eindeutigen ID.
+
+"""
 class Room:
     def __init__(self, ID: int):
         self.ID = ID
