@@ -4,14 +4,14 @@ from pathlib import Path
 import math
 from itertools import combinations
 
-inputname = "INPUT/INPUT" #Hier Namen der Datei eintragen, in der im Input die Namen stehen
+inputname = "INPUT/BREAKINPUT" #Hier Namen der Datei eintragen, in der im Input die Namen stehen
 
 room_priority = "Make" #Optionen (Großschreibung beachten!): "Fill", "Make"
 type_priority = "Experience" #Optionen "Wish", "Experience"
 free_speakers_priority = "Spread" #Optionen "Fill", "Spread"
 
 min_rooms = 2
-max_rooms = 5
+max_rooms = 10
 ironman_threshold = 15 #WIP: Minimum an kumulativer Erfahrung, um dritten Teamplatz frei zu erlauben
 
 class Room:
@@ -37,7 +37,8 @@ def validate_data(input_name: str) -> pd.DataFrame:
 
     print("Erkanntes Encoding:", result["encoding"])
 
-    df = pd.read_csv(pfad, sep=None, encoding=result["encoding"])
+    with open(pfad, "r", encoding=result["encoding"], errors="ignore") as f:
+        df = pd.read_csv(pfad, sep=None)
 
     print("Kopfzeile eingelesen als ", df.head())
     print("Info eingelesen als", df.info())
