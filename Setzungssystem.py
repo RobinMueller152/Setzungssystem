@@ -4,7 +4,7 @@ from pathlib import Path
 import math
 from itertools import combinations
 
-inputname = "INPUT/BREAKINPUT" #Hier Namen der Datei eintragen, in der im Input die Namen stehen
+inputname = "INPUT/TESTINPUT" #Hier Namen der Datei eintragen, in der im Input die Namen stehen
 
 room_priority = "Make" #Optionen (Großschreibung beachten!): "Fill", "Make"
 type_priority = "Experience" #Optionen "Wish", "Experience"
@@ -45,7 +45,9 @@ def validate_data(input_name: str) -> pd.DataFrame:
     print("Erkanntes Encoding:", result["encoding"])
 
     with open(pfad, "r", encoding=result["encoding"], errors="ignore") as f:
-        df = pd.read_csv(pfad, sep=None)
+        print(repr(pfad))
+        print(type(pfad))
+        df = pd.read_csv(pfad, sep=None, engine="python")
 
     print("Kopfzeile eingelesen als ", df.head())
     print("Info eingelesen als", df.info())
