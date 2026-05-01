@@ -4,14 +4,14 @@ from pathlib import Path
 import math
 from itertools import combinations
 
-inputname = "INPUT/TESTINPUT" #Hier Namen der Datei eintragen, in der im Input die Namen stehen
+inputname = "INPUT/Setzung_Einsteigerabend - Formularantworten 1-2.csv" #Hier Namen der Datei eintragen, in der im Input die Namen stehen
 
-room_priority = "Make" #Optionen (Großschreibung beachten!): "Fill", "Make"
-type_priority = "Experience" #Optionen "Wish", "Experience"
+room_priority = "Fill" #Optionen (Großschreibung beachten!): "Fill", "Make"
+type_priority = "Wish" #Optionen "Wish", "Experience"
 free_speakers_priority = "Spread" #Optionen "Fill", "Spread"
 
-min_rooms = 2
-max_rooms = 10
+min_rooms = 1
+max_rooms = 4
 ironman_threshold = 15 #WIP: Minimum an kumulativer Erfahrung, um dritten Teamplatz frei zu erlauben
 
 """
@@ -294,7 +294,7 @@ def print_rooms(Rooms):
     # Nicht zugeordnete Teilnehmer
     unassigned_entries = []
     if not data.empty:
-        unassigned_entries = [f"{row['Name']} ({row['Erfahrung']})" for _, row in data.iterrows()]
+        unassigned_entries = [f"{row['Name']} ({row['Redepräferenz']}, {row['Erfahrung']})" for _, row in data.iterrows()]
     room_columns["Nicht zugeordnet!"] = [""] + unassigned_entries
 
     # Alle Spalten gleich lang machen
